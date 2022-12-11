@@ -1,3 +1,5 @@
+import Form from "vform";
+
 export default {
 	props: {
 		form: { type: Form, required: true },
