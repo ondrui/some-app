@@ -1,18 +1,32 @@
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref } from "vue";
 
-export default () => {
-	let width = ref(0);
+let width = ref(0);
 	let height = ref(0);
 	const handler =() => {
 		width.value = window.innerWidth;
 		height.value = window.innerHeight;
+		console.log("updated");
 	};
-	onMounted(() => {
-		handler();
-		window.addEventListener("resize", handler);
-	});
-	onUnmounted(() => {
-		window.removeEventListener("resize", handler);
-	});
+	handler();
+	window.addEventListener("resize", handler);
+
+export default () => {
 	return { width, height };
 };
+// export default () => {
+// 	let width = ref(0);
+// 	let height = ref(0);
+// 	const handler =() => {
+// 		width.value = window.innerWidth;
+// 		height.value = window.innerHeight;
+// 		console.log("updated");
+// 	};
+// 	onMounted(() => {
+// 		handler();
+// 		window.addEventListener("resize", handler);
+// 	});
+// 	onUnmounted(() => {
+// 		window.removeEventListener("resize", handler);
+// 	});
+// 	return { width, height };
+// };

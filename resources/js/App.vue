@@ -3,7 +3,8 @@
 		<div class="container">
 			<router-link :to="{ name: 'posts' }">Home</router-link> |
 			<router-link :to="{ name: 'posts.create' }">Create post</router-link>
-			{{ width }}
+			{{ width }} |
+			{{ windowSizes.width }}
 		</div>
 	</nav>
 	<div class="container mt-2">
@@ -11,9 +12,18 @@
 	</div>
 </template>
 <script>
-import windowSizes from "./mixins/window-sizes";
+import useWindowSizes from "./composables/window-sizes";
+import { computed } from "vue";
 
 export default {
-	mixins: [windowSizes],
+	setup() {
+		let fake = Math.random();
+		let width = computed(() => fake * 100);
+		// let { width: windowSize, height } = useWindowSizes();
+		let windowSizes = useWindowSizes();
+
+		// return { width, height };
+		return { width, windowSizes };
+	},
 };
 </script>
